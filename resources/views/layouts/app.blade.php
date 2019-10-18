@@ -39,7 +39,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                Task List
+                Cars
             </a>
         </div>
 
@@ -69,7 +69,8 @@
         </div>
     </div>
 </nav>
-
+@include('partials.errors')
+@include('partials.success')
 @yield('content')
 
 <!-- JavaScripts -->
