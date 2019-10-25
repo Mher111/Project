@@ -30,8 +30,8 @@
             <ol class="list-unstyled">
                 <li><a href="/companies/{{$company->id}}/edit">Edit</a></li>
                 <li><a href="/companies">List of companies</a></li>
-                <li><a href="/companies/create">Create a new company</a></li>
-                <li><a href="/projects/{{$company->id}}/create">Add a new project</a></li>
+                <li><a href="/companies/create/">Create a new company</a></li>
+                <li><a href="/projects/create/{{$company->id}}">Add a new project</a></li>
                 <li> <a
                         href=""
                         onclick="
@@ -56,4 +56,5 @@
 
 
     </div>
+
 @endsection

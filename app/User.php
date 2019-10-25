@@ -45,7 +45,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Project::class);
     }
     public function comments(){
-        return $this->hasMany(Comments::class);
+        return $this->morphToMany(Comments::class,'commentable');
     }
     public function companies(){
         return $this->hasMany(Company::class);

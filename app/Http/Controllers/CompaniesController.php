@@ -19,9 +19,13 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        $companies=Company::all();
-        return view('companies.index',compact('companies'));
+        if (Auth::check()){
+            $companies=Company::where('user_id',Auth::id())->get();
+
+            return view('companies.index',compact('companies'));
+        }
     }
+
 
     /**
      * Show the form for creating a new resource.

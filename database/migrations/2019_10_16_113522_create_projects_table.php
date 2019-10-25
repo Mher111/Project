@@ -19,9 +19,9 @@ class CreateProjectsTable extends Migration
             $table->longText('description')->nullable();
             $table->integer('days')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('company_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->bigInteger('company_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
         });
     }

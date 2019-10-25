@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Comments;
+use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
@@ -35,8 +36,23 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::check()){
+            $comment = Comment::create([
+                'body' => $request->input('body'),
+                'url' => $request->input('url'),
+                'commentable_type' => $request->input('commentable_type'),
+                'commentable_id' => $request->input('commentable_id'),
+                'user_id'=>Auth::user()->id
+
+            ]);
+            if($comment){
+                return back()->withInput()->with('success' , 'Company created successfully');
+            }
+        }
+
+        return back()->withInput()->with('errors', 'Error creating new comment');
     }
+
 
     /**
      * Display the specified resource.
@@ -44,7 +60,7 @@ class CommentsController extends Controller
      * @param  \App\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function show(Comments $comments)
+    public function show(Comment $comments)
     {
         //
     }
@@ -55,7 +71,7 @@ class CommentsController extends Controller
      * @param  \App\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comments $comments)
+    public function edit(Comment $comments)
     {
         //
     }
@@ -67,7 +83,7 @@ class CommentsController extends Controller
      * @param  \App\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comments $comments)
+    public function update(Request $request, Comment $comments)
     {
         //
     }
@@ -78,7 +94,7 @@ class CommentsController extends Controller
      * @param  \App\Comments  $comments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comments $comments)
+    public function destroy(Comment $comments)
     {
         //
     }

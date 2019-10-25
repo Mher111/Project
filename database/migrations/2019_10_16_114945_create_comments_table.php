@@ -18,9 +18,8 @@ class CreateCommentsTable extends Migration
             $table->longText('body');
             $table->string('url',255)->nullable();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('commentable_id')->unsigned();
-            $table->string('commentable_type');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->morphs('commentable');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
